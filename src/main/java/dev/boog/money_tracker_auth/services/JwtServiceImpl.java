@@ -23,7 +23,7 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public String generateAccessToken(User user) {
         Date issuedAt = Date.from(Instant.now());
-        Date expiration = Date.from(Instant.now().plus(15L, ChronoUnit.SECONDS));
+        Date expiration = Date.from(Instant.now().plus(15L, ChronoUnit.MINUTES));
         return Jwts.builder()
                 .subject(user.getId().toString())
                 .issuedAt(issuedAt)
@@ -35,7 +35,7 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public String generateRefreshToken(User user) {
         Date issuedAt = Date.from(Instant.now());
-        Date expiration = Date.from(Instant.now().plus(30L, ChronoUnit.SECONDS));
+        Date expiration = Date.from(Instant.now().plus(7L, ChronoUnit.DAYS));
         return Jwts.builder()
                 .subject(user.getId().toString())
                 .issuedAt(issuedAt)
