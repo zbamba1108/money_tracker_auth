@@ -1,6 +1,7 @@
-package dev.boog.money_tracker_auth.services;
+package dev.boog.money_tracker_auth.services.impl;
 
 import dev.boog.money_tracker_auth.entities.User;
+import dev.boog.money_tracker_auth.services.JwtService;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

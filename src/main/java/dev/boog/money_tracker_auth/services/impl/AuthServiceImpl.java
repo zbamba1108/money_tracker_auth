@@ -1,10 +1,12 @@
-package dev.boog.money_tracker_auth.services;
+package dev.boog.money_tracker_auth.services.impl;
 
 import dev.boog.money_tracker_auth.dto.request.LoginRequest;
 import dev.boog.money_tracker_auth.dto.response.LoginResponse;
 import dev.boog.money_tracker_auth.dto.response.RefreshResponse;
 import dev.boog.money_tracker_auth.entities.User;
 import dev.boog.money_tracker_auth.repositories.UserRepository;
+import dev.boog.money_tracker_auth.services.AuthService;
+import dev.boog.money_tracker_auth.services.JwtService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

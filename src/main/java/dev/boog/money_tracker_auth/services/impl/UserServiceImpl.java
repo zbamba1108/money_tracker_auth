@@ -1,9 +1,10 @@
-package dev.boog.money_tracker_auth.services;
+package dev.boog.money_tracker_auth.services.impl;
 
 import dev.boog.money_tracker_auth.dto.request.UserRequest;
 import dev.boog.money_tracker_auth.entities.User;
 import dev.boog.money_tracker_auth.mappers.UserMapper;
 import dev.boog.money_tracker_auth.repositories.UserRepository;
+import dev.boog.money_tracker_auth.services.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
