@@ -2,6 +2,8 @@ package dev.boog.money_tracker_auth.exceptions;
 
 import dev.boog.money_tracker_auth.exceptions.custom.EmailAlreadyUsedException;
 import dev.boog.money_tracker_auth.exceptions.custom.InvalidTokenException;
+import dev.boog.money_tracker_auth.exceptions.response.ErrorResponse;
+import dev.boog.money_tracker_auth.exceptions.response.ValidationFields;
 import dev.boog.money_tracker_auth.utils.Constants;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
