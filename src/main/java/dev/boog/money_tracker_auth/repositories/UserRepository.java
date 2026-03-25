@@ -8,11 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByEmail(@Email String email);
 
-    void deleteById(Long id);
-
-    Optional<User> getById(Long id);
 }

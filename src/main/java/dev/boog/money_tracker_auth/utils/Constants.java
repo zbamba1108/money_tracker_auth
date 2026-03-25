@@ -7,5 +7,6 @@ public class Constants {
         public static final String EXPIRED_TOKEN = "Expired token";
         public static final String BAD_CREDENTIALS = "Incorrect email or password";
         public static final String MISSING_BODY = "Missing body";
+        public static final String EMAIL_ALREADY_USED = "Email already used";
     }
 }
