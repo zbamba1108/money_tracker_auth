@@ -1,7 +1,6 @@
 package dev.boog.money_tracker_auth.controllers;
 
 import dev.boog.money_tracker_auth.dto.request.UserRequest;
-import dev.boog.money_tracker_auth.entities.User;
 import dev.boog.money_tracker_auth.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
