@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Table(name = "session")
 public class Session {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
