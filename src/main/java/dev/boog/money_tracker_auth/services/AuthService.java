@@ -10,5 +10,5 @@ public interface AuthService {
 
     void logout(String refreshToken);
 
-    RefreshResponse refreshAccessToken(String refreshToken);
+    RefreshResponse refreshAccessToken(String oldRefreshToken);
 }

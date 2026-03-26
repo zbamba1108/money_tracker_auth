@@ -13,6 +13,7 @@ import dev.boog.money_tracker_auth.repositories.UserRepository;
 import dev.boog.money_tracker_auth.services.AuthService;
 import dev.boog.money_tracker_auth.services.JwtService;
 import dev.boog.money_tracker_auth.utils.Constants;
+import dev.boog.money_tracker_auth.utils.HashUtils;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -67,7 +69,7 @@ public class AuthServiceImpl implements AuthService {
 
             String accessToken = jwtService.generateAccessToken(user);
             String refreshToken = jwtService.generateRefreshToken(user);
-            String encodedRefreshToken = passwordEncoder.encode(refreshToken);
+            String encodedRefreshToken = HashUtils.sha256(refreshToken);
 
             RefreshToken refreshTokenEntity = refreshTokenRepository
                     .findByUserId(user.getId())
@@ -91,13 +93,10 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     @Override
     public void logout(String refreshToken) {
-        Long userId = jwtService.extractUserId(refreshToken);
-        RefreshToken refreshTokenEntity = refreshTokenRepository.findByUserId(userId)
+        Long userId = jwtService.validateAndExtractUserId(refreshToken);
+        String encodedRefreshToken = HashUtils.sha256(refreshToken);
+        RefreshToken refreshTokenEntity = refreshTokenRepository.findByUserIdAndToken(userId, encodedRefreshToken)
                 .orElseThrow(InvalidTokenException::new);
-
-        if (!passwordEncoder.matches(refreshToken, refreshTokenEntity.getToken())) {
-            throw new InvalidTokenException();
-        }
 
         sessionRepository.invalidateActiveSessions(userId, Timestamp.from(Instant.now()));
 
@@ -106,22 +105,27 @@ public class AuthServiceImpl implements AuthService {
 
     @Transactional
     @Override
-    public RefreshResponse refreshAccessToken(String refreshToken) {
-        Long userId = jwtService.extractUserId(refreshToken);
-        RefreshToken refreshTokenEntity = refreshTokenRepository.findByUserId(userId)
+    public RefreshResponse refreshAccessToken(String oldRefreshToken) {
+        Long userId = jwtService.validateAndExtractUserId(oldRefreshToken);
+        String encodedOldRefreshToken = HashUtils.sha256(oldRefreshToken);
+        RefreshToken refreshTokenEntity = refreshTokenRepository
+                .findByUserIdAndToken(userId, encodedOldRefreshToken)
                 .orElseThrow(InvalidTokenException::new);
 
-        if (!passwordEncoder.matches(refreshToken, refreshTokenEntity.getToken())
-                || sessionRepository.findByUserIdAndNotExpiredAndNotRevoked(userId, Timestamp.from(Instant.now())).isEmpty()) {
+        List<Session> sessionList = sessionRepository
+                .findByUserIdAndNotExpiredAndNotRevoked(userId, Timestamp.from(Instant.now()));
+
+        if (sessionList.isEmpty()) {
             throw new InvalidTokenException();
         }
 
-        String refreshTokenString = jwtService.generateRefreshToken(refreshTokenEntity.getUser());
-        String accessTokenString = jwtService.generateAccessToken(refreshTokenEntity.getUser());
-        refreshTokenEntity.setToken(passwordEncoder.encode(refreshTokenString));
+        String newRefreshToken = jwtService.generateRefreshToken(refreshTokenEntity.getUser());
+        String encodedNewRefreshToken = HashUtils.sha256(newRefreshToken);
+        String newAccessToken = jwtService.generateAccessToken(refreshTokenEntity.getUser());
+        refreshTokenEntity.setToken(encodedNewRefreshToken);
         refreshTokenRepository.save(refreshTokenEntity);
 
-        return new RefreshResponse(accessTokenString, refreshTokenString);
+        return new RefreshResponse(newAccessToken, newRefreshToken);
     }
 
 }

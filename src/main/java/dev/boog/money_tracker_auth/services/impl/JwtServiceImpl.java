@@ -15,7 +15,7 @@ import java.util.Date;
 @Component
 public class JwtServiceImpl implements JwtService {
 
-    private final String secret = "secretlongenoughtobearealsecretwithadditionalcharactershopingnowislongenough"; // TODO replace with ENV_VARIABLE
+    public final String secret = "secretlongenoughtobearealsecretwithadditionalcharactershopingnowislongenough"; // TODO replace with ENV_VARIABLE
 
     private final JwtParser jwtParser = Jwts.parser()
             .verifyWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret)))
@@ -46,7 +46,7 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public Long extractUserId(String token) {
+    public Long validateAndExtractUserId(String token) {
         String subject = jwtParser
                 .parseSignedClaims(token)
                 .getPayload()
