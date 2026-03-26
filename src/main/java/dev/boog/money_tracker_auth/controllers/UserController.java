@@ -2,14 +2,15 @@ package dev.boog.money_tracker_auth.controllers;
 
 import dev.boog.money_tracker_auth.dto.request.UserRequest;
 import dev.boog.money_tracker_auth.services.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
-@CrossOrigin("*")
+@RequestMapping("/api/auth/users")
+@Tag(name = "User")
 public class UserController {
 
     private final UserService userService;

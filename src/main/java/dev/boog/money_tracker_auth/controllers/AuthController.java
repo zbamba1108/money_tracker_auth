@@ -5,6 +5,7 @@ import dev.boog.money_tracker_auth.dto.request.RefreshRequest;
 import dev.boog.money_tracker_auth.dto.response.LoginResponse;
 import dev.boog.money_tracker_auth.dto.response.RefreshResponse;
 import dev.boog.money_tracker_auth.services.AuthService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Auth")
 public class AuthController {
 
     private final AuthService authService;

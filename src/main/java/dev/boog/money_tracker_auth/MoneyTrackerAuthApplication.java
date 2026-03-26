@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,9 @@ public class MoneyTrackerAuthApplication {
     }
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserRepository userRepository;
 
     //@Bean
@@ -29,7 +33,7 @@ public class MoneyTrackerAuthApplication {
             for (int i = 0; i < 10; i++) {
                 User user = User.builder()
                         .email("user" + (i+1) + "@gmail.com")
-                        .password("password")
+                        .password(passwordEncoder.encode("password"))
                         .build();
                 userList.add(user);
             }
