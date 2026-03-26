@@ -22,7 +22,7 @@ public class MoneyTrackerAuthApplication {
     @Autowired
     private UserRepository userRepository;
 
-    @Bean
+    //@Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             List<User> userList = new ArrayList<>();
