@@ -18,4 +18,9 @@ public class Constants {
     public static class Token {
         public static final String BEARER = "Bearer ";
     }
+
+    public static class Tags {
+        public static final String USER_API = "User API";
+        public static final String AUTH_API = "Auth API";
+    }
 }
