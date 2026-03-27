@@ -1,7 +1,7 @@
 package dev.boog.money_tracker_auth.utils;
 
-import java.security.MessageDigest;
-import java.util.Base64;
+import java.security.*;
+import java.util.*;
 
 public final class HashUtils {
 

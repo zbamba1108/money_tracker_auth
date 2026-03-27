@@ -1,6 +1,6 @@
 package dev.boog.money_tracker_auth.exceptions.custom;
 
-import dev.boog.money_tracker_auth.utils.Constants;
+import dev.boog.money_tracker_auth.utils.*;
 
 public class InvalidTokenException extends RuntimeException {
 

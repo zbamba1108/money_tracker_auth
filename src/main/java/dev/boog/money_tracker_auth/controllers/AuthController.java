@@ -1,12 +1,11 @@
 package dev.boog.money_tracker_auth.controllers;
 
-import dev.boog.money_tracker_auth.dto.request.LoginRequest;
-import dev.boog.money_tracker_auth.dto.response.LoginResponse;
-import dev.boog.money_tracker_auth.dto.response.RefreshResponse;
-import dev.boog.money_tracker_auth.services.AuthService;
+import dev.boog.money_tracker_auth.dto.request.*;
+import dev.boog.money_tracker_auth.dto.response.*;
+import dev.boog.money_tracker_auth.services.*;
 import dev.boog.money_tracker_auth.utils.*;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.tags.*;
+import jakarta.validation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 

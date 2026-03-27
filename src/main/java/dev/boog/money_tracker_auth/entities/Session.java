@@ -1,11 +1,11 @@
 package dev.boog.money_tracker_auth.entities;
 
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.Table;
 import jakarta.persistence.*;
+import java.sql.*;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import java.sql.Timestamp;
+import org.hibernate.annotations.*;
 
 @Getter
 @Setter

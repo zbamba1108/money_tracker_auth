@@ -1,23 +1,17 @@
 package dev.boog.money_tracker_auth.exceptions;
 
-import dev.boog.money_tracker_auth.exceptions.custom.EmailAlreadyUsedException;
-import dev.boog.money_tracker_auth.exceptions.custom.InvalidTokenException;
-import dev.boog.money_tracker_auth.exceptions.response.ErrorResponse;
-import dev.boog.money_tracker_auth.exceptions.response.ValidationFields;
-import dev.boog.money_tracker_auth.utils.Constants;
-import io.jsonwebtoken.ExpiredJwtException;
+import dev.boog.money_tracker_auth.exceptions.custom.*;
+import dev.boog.money_tracker_auth.exceptions.response.*;
+import dev.boog.money_tracker_auth.utils.*;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.SignatureException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
+import java.util.logging.*;
+import org.springframework.http.*;
+import org.springframework.http.converter.*;
+import org.springframework.security.authentication.*;
+import org.springframework.web.bind.*;
+import org.springframework.web.bind.annotation.*;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

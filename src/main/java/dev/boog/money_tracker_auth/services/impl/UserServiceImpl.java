@@ -1,16 +1,16 @@
 package dev.boog.money_tracker_auth.services.impl;
 
-import dev.boog.money_tracker_auth.dto.request.UserRequest;
-import dev.boog.money_tracker_auth.entities.User;
+import dev.boog.money_tracker_auth.dto.request.*;
+import dev.boog.money_tracker_auth.entities.*;
 import dev.boog.money_tracker_auth.exceptions.custom.*;
-import dev.boog.money_tracker_auth.mappers.UserMapper;
-import dev.boog.money_tracker_auth.repositories.UserRepository;
+import dev.boog.money_tracker_auth.mappers.*;
+import dev.boog.money_tracker_auth.repositories.*;
 import dev.boog.money_tracker_auth.services.*;
 import dev.boog.money_tracker_auth.utils.*;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.crypto.password.*;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.*;
 
 @Service
 public class UserServiceImpl implements UserService {

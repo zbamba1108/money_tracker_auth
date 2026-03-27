@@ -1,9 +1,9 @@
 package dev.boog.money_tracker_auth.mappers;
 
-import dev.boog.money_tracker_auth.dto.request.UserRequest;
-import dev.boog.money_tracker_auth.entities.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import dev.boog.money_tracker_auth.dto.request.*;
+import dev.boog.money_tracker_auth.entities.*;
+import org.springframework.security.crypto.password.*;
+import org.springframework.stereotype.*;
 
 @Component
 public final class UserMapper {

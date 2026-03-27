@@ -1,6 +1,6 @@
 package dev.boog.money_tracker_auth.services;
 
-import dev.boog.money_tracker_auth.entities.User;
+import dev.boog.money_tracker_auth.entities.*;
 
 public interface JwtService {
 

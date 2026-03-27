@@ -1,11 +1,10 @@
 package dev.boog.money_tracker_auth.repositories;
 
-import dev.boog.money_tracker_auth.entities.RefreshToken;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import dev.boog.money_tracker_auth.entities.*;
+import java.util.*;
+import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.*;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 public interface RefreshTokenRepository extends CrudRepository<RefreshToken, Long> {

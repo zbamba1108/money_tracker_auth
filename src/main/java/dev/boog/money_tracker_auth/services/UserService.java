@@ -1,6 +1,6 @@
 package dev.boog.money_tracker_auth.services;
 
-import dev.boog.money_tracker_auth.dto.request.UserRequest;
+import dev.boog.money_tracker_auth.dto.request.*;
 
 public interface UserService {
 

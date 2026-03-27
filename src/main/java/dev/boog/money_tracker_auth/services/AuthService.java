@@ -1,8 +1,7 @@
 package dev.boog.money_tracker_auth.services;
 
-import dev.boog.money_tracker_auth.dto.request.LoginRequest;
-import dev.boog.money_tracker_auth.dto.response.LoginResponse;
-import dev.boog.money_tracker_auth.dto.response.RefreshResponse;
+import dev.boog.money_tracker_auth.dto.request.*;
+import dev.boog.money_tracker_auth.dto.response.*;
 
 public interface AuthService {
 
