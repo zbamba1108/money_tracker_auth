@@ -6,5 +6,5 @@ public interface UserService {
 
     void save(UserRequest req);
 
-    void delete(Long id);
+    void delete(String token, UserRequest req);
 }

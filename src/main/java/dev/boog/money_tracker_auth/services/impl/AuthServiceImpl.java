@@ -52,10 +52,10 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
-        User user = userRepository.findByEmail(loginRequest.getEmail())
+        User user = userRepository.findByEmail(loginRequest.email())
                 .orElseThrow(() -> new BadCredentialsException(Constants.Exceptions.BAD_CREDENTIALS));
 
-        if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+        if (passwordEncoder.matches(loginRequest.password(), user.getPassword())) {
             Instant now = Instant.now();
             sessionRepository.invalidateActiveSessions(user.getId(), Timestamp.from(now));
 
@@ -92,10 +92,10 @@ public class AuthServiceImpl implements AuthService {
 
     @Transactional
     @Override
-    public void logout(String refreshToken) {
-        Long userId = jwtService.validateAndExtractUserId(refreshToken);
-        String encodedRefreshToken = HashUtils.sha256(refreshToken);
-        RefreshToken refreshTokenEntity = refreshTokenRepository.findByUserIdAndToken(userId, encodedRefreshToken)
+    public void logout(String accessToken) {
+        accessToken = jwtService.validateTypeAndSubstring(accessToken);
+        Long userId = jwtService.parseSignedClaimsAndExtractUserId(accessToken);
+        RefreshToken refreshTokenEntity = refreshTokenRepository.findByUserId(userId)
                 .orElseThrow(InvalidTokenException::new);
 
         sessionRepository.invalidateActiveSessions(userId, Timestamp.from(Instant.now()));
@@ -106,7 +106,8 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     @Override
     public RefreshResponse refreshAccessToken(String oldRefreshToken) {
-        Long userId = jwtService.validateAndExtractUserId(oldRefreshToken);
+        oldRefreshToken = jwtService.validateTypeAndSubstring(oldRefreshToken);
+        Long userId = jwtService.parseSignedClaimsAndExtractUserId(oldRefreshToken);
         String encodedOldRefreshToken = HashUtils.sha256(oldRefreshToken);
         RefreshToken refreshTokenEntity = refreshTokenRepository
                 .findByUserIdAndToken(userId, encodedOldRefreshToken)

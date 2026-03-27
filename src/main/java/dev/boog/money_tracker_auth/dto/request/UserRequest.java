@@ -8,16 +8,7 @@ import lombok.Getter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
-@ToString
-@Getter
 @Builder
-@AllArgsConstructor
-public class UserRequest {
+public record UserRequest(@Email String email, @NotBlank @Length(min = 6) String password) {
 
-    @Email
-    private final String email;
-
-    @NotBlank
-    @Length(min = 6)
-    private final String password;
 }

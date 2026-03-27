@@ -1,11 +1,14 @@
 package dev.boog.money_tracker_auth.services.impl;
 
 import dev.boog.money_tracker_auth.entities.User;
+import dev.boog.money_tracker_auth.exceptions.custom.*;
 import dev.boog.money_tracker_auth.services.JwtService;
+import dev.boog.money_tracker_auth.utils.*;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.apache.commons.lang3.*;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -46,7 +49,16 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public Long validateAndExtractUserId(String token) {
+    public String validateTypeAndSubstring(String token) {
+        if (StringUtils.isNotBlank(token) && token.startsWith(Constants.Token.BEARER)) {
+            return token.substring(Constants.Token.BEARER.length());
+        }
+
+        throw new InvalidTokenException();
+    }
+
+    @Override
+    public Long parseSignedClaimsAndExtractUserId(String token) {
         String subject = jwtParser
                 .parseSignedClaims(token)
                 .getPayload()

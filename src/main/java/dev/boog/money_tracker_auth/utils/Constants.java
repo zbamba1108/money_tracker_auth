@@ -9,4 +9,13 @@ public class Constants {
         public static final String MISSING_BODY = "Missing body";
         public static final String EMAIL_ALREADY_USED = "Email already used";
     }
+
+    public static class Headers {
+        public static final String ACCESS_TOKEN = "Access-Token";
+        public static final String REFRESH_TOKEN = "Refresh-Token";
+    }
+
+    public static class Token {
+        public static final String BEARER = "Bearer ";
+    }
 }

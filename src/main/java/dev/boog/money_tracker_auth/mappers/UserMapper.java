@@ -16,8 +16,8 @@ public final class UserMapper {
 
     public User toEntity(UserRequest req) {
         User user = new User();
-        String hashPassword = passwordEncoder.encode(req.getPassword());
-        user.setEmail(req.getEmail());
+        String hashPassword = passwordEncoder.encode(req.password());
+        user.setEmail(req.email());
         user.setPassword(hashPassword);
 
         return user;

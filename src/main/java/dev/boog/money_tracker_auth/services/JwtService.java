@@ -8,5 +8,7 @@ public interface JwtService {
 
     String generateRefreshToken(User user);
 
-    Long validateAndExtractUserId(String token);
+    String validateTypeAndSubstring(String token);
+
+    Long parseSignedClaimsAndExtractUserId(String token);
 }
