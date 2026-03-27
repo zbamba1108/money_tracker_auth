@@ -1,5 +1,6 @@
 package dev.boog.money_tracker_auth.config;
 
+import dev.boog.money_tracker_auth.config.filters.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.*;
 
 @Configuration
 public class SecurityConfiguration {
@@ -21,7 +23,10 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest()
+                        .requestMatchers("/api-docs/**", "/swagger-ui/**")
+                        .permitAll())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/**")
                         .authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .build();

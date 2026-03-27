@@ -9,7 +9,9 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 @Builder
-public record LoginRequest(@Email String email, @NotBlank @Length(min = 6, max = 100) String password) {
+public record LoginRequest(
+        @NotBlank @Email String email,
+        @NotBlank @Length(min = 6, max = 100) String password) {
 
     @JsonCreator
     public LoginRequest(String email, String password) {
