@@ -29,7 +29,7 @@ public class SessionRepositoryTest {
     @Before
     public void init() {
         DbInitializer.getInstance().initializeUsers(userRepository,1);
-        user = getUser(userRepository);
+        user = UserRepositoryTest.getUser(userRepository);
         now = Timestamp.from(Instant.now());
     }
 
@@ -70,14 +70,6 @@ public class SessionRepositoryTest {
         List<Session> sessionList = sessionRepository.findByUserIdAndNotExpiredAndNotRevoked(user.getId(), now);
 
         Assert.assertTrue(sessionList.isEmpty());
-    }
-
-    public User getUser(UserRepository userRepository) {
-        Iterable<User> userIterable = userRepository.findAll();
-        if (userIterable.iterator().hasNext()) {
-            return userIterable.iterator().next();
-        }
-        return null;
     }
 
 }

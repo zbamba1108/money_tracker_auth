@@ -23,7 +23,7 @@ public class RefreshTokenRepositoryTest {
     @Before
     public void init() {
         DbInitializer.getInstance().initializeUsers(userRepository, 1);
-        user = getUser(userRepository);
+        user = UserRepositoryTest.getUser(userRepository);
         DbInitializer.getInstance().initializeRefreshToken(refreshTokenRepository, user);
     }
 
@@ -53,13 +53,5 @@ public class RefreshTokenRepositoryTest {
         RefreshToken token = refreshTokenRepository.findByUserIdAndToken(user.getId(), "refresh_token1").orElse(null);
 
         Assert.assertNull(token);
-    }
-
-    public User getUser(UserRepository userRepository) {
-        Iterable<User> userIterable = userRepository.findAll();
-        if (userIterable.iterator().hasNext()) {
-            return userIterable.iterator().next();
-        }
-        return null;
     }
 }
