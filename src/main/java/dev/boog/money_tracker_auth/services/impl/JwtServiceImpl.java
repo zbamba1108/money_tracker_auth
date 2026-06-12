@@ -15,11 +15,9 @@ import org.springframework.stereotype.*;
 
 @Component
 public class JwtServiceImpl implements JwtService {
-
-    public final String secret = "secretlongenoughtobearealsecretwithadditionalcharactershopingnowislongenough"; // TODO replace with ENV_VARIABLE
-
+    
     private final JwtParser jwtParser = Jwts.parser()
-            .verifyWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret)))
+            .verifyWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(Constants.Token.SECRET)))
             .build();
 
     @Override
@@ -30,7 +28,7 @@ public class JwtServiceImpl implements JwtService {
                 .subject(user.getId().toString())
                 .issuedAt(issuedAt)
                 .expiration(expiration)
-                .signWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret)))
+                .signWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(Constants.Token.SECRET)))
                 .compact();
     }
 
@@ -42,7 +40,7 @@ public class JwtServiceImpl implements JwtService {
                 .subject(user.getId().toString())
                 .issuedAt(issuedAt)
                 .expiration(expiration)
-                .signWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret)))
+                .signWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(Constants.Token.SECRET)))
                 .compact();
     }
 

@@ -17,6 +17,7 @@ public class Constants {
 
     public static class Token {
         public static final String BEARER = "Bearer ";
+        public static final String SECRET = "secretlongenoughtobearealsecretwithadditionalcharactershopingnowislongenough"; // TODO replace with ENV_VARIABLE
     }
 
     public static class Tags {

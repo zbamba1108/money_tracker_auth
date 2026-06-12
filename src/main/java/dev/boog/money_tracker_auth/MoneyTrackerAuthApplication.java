@@ -1,17 +1,14 @@
 package dev.boog.money_tracker_auth;
 
-import dev.boog.money_tracker_auth.entities.User;
-import dev.boog.money_tracker_auth.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.ArrayList;
-import java.util.List;
+import dev.boog.money_tracker_auth.entities.*;
+import dev.boog.money_tracker_auth.repositories.*;
+import java.util.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.*;
+import org.springframework.boot.autoconfigure.*;
+import org.springframework.context.*;
+import org.springframework.context.annotation.*;
+import org.springframework.security.crypto.password.*;
 
 @SpringBootApplication
 public class MoneyTrackerAuthApplication {
@@ -20,13 +17,13 @@ public class MoneyTrackerAuthApplication {
         SpringApplication.run(MoneyTrackerAuthApplication.class, args);
     }
 
-    @Autowired
+    /*@Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
 
-    //@Bean
+    @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             List<User> userList = new ArrayList<>();
@@ -40,5 +37,5 @@ public class MoneyTrackerAuthApplication {
 
             userRepository.saveAll(userList);
         };
-    }
+    }*/
 }

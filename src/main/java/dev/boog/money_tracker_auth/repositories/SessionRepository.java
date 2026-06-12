@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.*;
 @Repository
 public interface SessionRepository extends CrudRepository<Session, Long> {
 
-    @Query("SELECT s FROM Session s WHERE s.user.id = :userId AND s.expiration > :expiration AND NOT s.revoked")
-    List<Session> findByUserIdAndNotExpiredAndNotRevoked(Long userId, Timestamp expiration);
+    @Query("SELECT s FROM Session s WHERE s.user.id = :userId AND s.expiration > :currentTime AND NOT s.revoked")
+    List<Session> findByUserIdAndNotExpiredAndNotRevoked(Long userId, Timestamp currentTime);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Session s SET s.revoked = true WHERE s.user.id = :userId AND s.expiration > :expiration AND NOT s.revoked")
-    void invalidateActiveSessions(Long userId, Timestamp expiration);
+    @Query("UPDATE Session s SET s.revoked = true WHERE s.user.id = :userId AND s.expiration > :currentTime AND NOT s.revoked")
+    void invalidateActiveSessions(Long userId, Timestamp currentTime);
 }
