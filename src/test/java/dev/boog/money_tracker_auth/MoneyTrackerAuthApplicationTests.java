@@ -1,7 +1,7 @@
 package dev.boog.money_tracker_auth;
 
-import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.*;
+import org.springframework.boot.test.context.*;
 
 @SpringBootTest
 public class MoneyTrackerAuthApplicationTests {
