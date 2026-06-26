@@ -35,16 +35,9 @@ public class JwtServiceTest {
         Assert.assertEquals(user.getId(), userId);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testGenerateAccessTokenNoUserThrowNullPointer() {
-        NullPointerException npe = null;
-        try {
-            jwtService.generateAccessToken(null);
-        } catch (NullPointerException e) {
-            npe = e;
-        }
-
-        Assert.assertNotNull(npe);
+        jwtService.generateAccessToken(null);
     }
 
     @Test
@@ -57,16 +50,9 @@ public class JwtServiceTest {
         Assert.assertEquals(user.getId(), userId);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testGenerateRefreshTokenNoUserThrowNullPointer() {
-        NullPointerException npe = null;
-        try {
-            jwtService.generateRefreshToken(null);
-        } catch (NullPointerException e) {
-            npe = e;
-        }
-
-        Assert.assertNotNull(npe);
+        jwtService.generateRefreshToken(null);
     }
 
     @Test
@@ -79,17 +65,9 @@ public class JwtServiceTest {
         Assert.assertEquals(expected, output);
     }
 
-    @Test
+    @Test(expected = InvalidTokenException.class)
     public void testValidateTypeAndSubstringThrowsInvalidTokenException() {
-        InvalidTokenException ite = null;
-
-        try {
-            jwtService.validateTypeAndSubstring("jdfbsjhgbh");
-        } catch (InvalidTokenException e) {
-            ite = e;
-        }
-
-        Assert.assertNotNull(ite);
+        jwtService.validateTypeAndSubstring("jdfbsjhgbh");
     }
 
     @Test

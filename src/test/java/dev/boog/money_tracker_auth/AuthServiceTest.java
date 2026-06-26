@@ -74,15 +74,11 @@ public class AuthServiceTest {
         Mockito.when(jwtService.validateTypeAndSubstring(Mockito.anyString())).thenReturn(ACCESS_TOKEN);
         Mockito.when(jwtService.parseSignedClaimsAndExtractUserId(Mockito.anyString())).thenReturn(1L);
         Mockito.when(refreshTokenRepository.findByUserId(Mockito.anyLong())).thenReturn(getRefreshToken());
-        Exception exception = null;
 
-        try {
-            authService.logout("Bearer " + ACCESS_TOKEN);
-        } catch (Exception e) {
-            exception = e;
-        }
+        authService.logout("Bearer " + ACCESS_TOKEN);
 
-        Assert.assertNull(exception);
+        Mockito.verify(sessionRepository, Mockito.times(1)).invalidateActiveSessions(Mockito.anyLong(), Mockito.any(Timestamp.class));
+        Mockito.verify(refreshTokenRepository, Mockito.times(1)).delete(Mockito.any(RefreshToken.class));
     }
 
     @Test(expected = InvalidTokenException.class)
