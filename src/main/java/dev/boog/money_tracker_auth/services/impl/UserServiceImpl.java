@@ -25,7 +25,8 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(UserRepository userRepository,
                            JwtService jwtService,
-                           UserMapper userMapper, PasswordEncoder passwordEncoder) {
+                           UserMapper userMapper,
+                           PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.jwtService = jwtService;
         this.userMapper = userMapper;

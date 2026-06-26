@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
 @Component
-public final class UserMapper {
+public class UserMapper {
 
     private final PasswordEncoder passwordEncoder;
 
