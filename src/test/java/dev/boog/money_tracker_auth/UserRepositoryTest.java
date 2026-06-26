@@ -2,8 +2,6 @@ package dev.boog.money_tracker_auth;
 
 import dev.boog.money_tracker_auth.entities.*;
 import dev.boog.money_tracker_auth.repositories.*;
-import java.sql.*;
-import java.time.*;
 import java.util.*;
 import org.junit.*;
 import org.junit.runner.*;
